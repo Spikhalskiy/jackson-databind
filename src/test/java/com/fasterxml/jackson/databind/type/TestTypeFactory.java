@@ -558,6 +558,16 @@ public class TestTypeFactory
         assertSame(t2, tf.moreSpecificType(t2, t1));
     }
 
+    public void testCollectionTypeWithoutGeneric()
+    {
+        TypeFactory tf = TypeFactory.defaultInstance();
+
+        JavaType t = tf.constructCollectionType(MyList.class, Long.class);
+
+        assertEquals(CollectionType.class, t.getClass());
+        assertSame(Long.class, t.getContentType().getRawClass());
+    }
+
     // [databind#489]
     public void testCacheClearing()
     {
